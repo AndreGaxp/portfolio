@@ -1,0 +1,261 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	font-family: 'Open Sans', Arial, sans-serif;
+	font-size: 15px;
+	background: #ccc;
+	color: white;
+	overflow: hidden;
+}
+
+.container{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/*Usando '>' você consegue "atacar" diretamente o que deseja.*/
+.container > input,
+.container > span{
+	position: fixed;
+	bottom: 0;
+	width: 20%;
+	height: 30px;
+	line-height: 35px;
+	cursor: pointer;
+}
+
+/*Posicionamento dos botões*/
+#radio-nav-1, #radio-nav-1 + span{	
+	left: 0;
+}
+#radio-nav-2, #radio-nav-2 + span{	
+	left: 20%;
+}
+#radio-nav-3, #radio-nav-3 + span{	
+	left: 40%;
+}
+#radio-nav-4, #radio-nav-4 + span{	
+	left: 60%;
+}
+#radio-nav-5, #radio-nav-5 + span{	
+	left: 80%;
+}
+
+/* Navegação e scroll */
+#radio-nav-1:checked ~ .scroll{	
+	transform: translateY(0%);
+	-webkit-transform: translateY(0%);
+}
+
+#radio-nav-2:checked ~ .scroll{	
+	transform: translateY(-100%);
+	-webkit-transform: translateY(-100%);
+}
+#radio-nav-3:checked ~ .scroll{	
+	transform: translateY(-200%);
+	-webkit-transform: translateY(-200%);
+}
+#radio-nav-4:checked ~ .scroll{	
+	transform: translateY(-300%);
+	-webkit-transform: translateY(-300%);
+}
+#radio-nav-5:checked ~ .scroll{	
+	transform: translateY(-400%);
+	-webkit-transform: translateY(-400%);
+}
+
+
+.container > span{
+	background: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	color: #48b188;
+	z-index: 10;
+}
+
+
+.container > input{
+	z-index: 15; /* Ordem de profundidades dos elementos exibidos*/
+	opacity: 0;
+}
+
+.container > input:checked + span,
+.container > input:checked:hover + span{
+	background: rgba(46, 148, 109, 1);
+	color: white;
+}
+
+/* Fazer a setinha, qualquer coisa perguntar para o anderson */
+.container > input:checked + span::after,
+.container > input:checked:hover + span::after{
+	content: "";
+	position: absolute;
+	bottom: 100%;
+	border: solid transparent;
+	border-bottom-color: rgba(46, 148, 109, 1);
+	border-width: 15px;	
+	margin-left: -15px;
+	left: 50%;
+}
+
+/* Ao passar o mouse em cima, o span ficara da cor escolhida */
+.container > input:hover + span{
+	background: rgba(46, 148, 109, 0.8);
+	color: white;
+}
+
+
+/*Cor de fundo dos conteúdos*/
+#section-1{
+	background: #a7750a;
+}
+#section-2{
+	background: #7fa8ff;
+}
+#section-3{
+	background: #956eff;
+}
+#section-4{
+	background: #503805;
+}
+#section-5{
+	background: #970202;
+}
+
+.scroll,
+.section{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	transition: all .6s ease-in-out;
+}
+
+/* Apenas para cortar a logo (triangulo com o nome do conteudo) */
+.section{
+	overflow: hidden;
+}
+
+.logo{
+	position: relative;
+	margin: 0 auto;
+	width: 200px;
+	height: 200px;
+	background: white;
+	transform: translateY(-50%) rotate(45deg);
+	 /*O prefixo -webkit- quer dizer que só os browsers que têm estrutura do webkit é que vão usar/ler/aplicar essa regra.*/
+	-webkit-transform: translateY(-50%) rotate(45deg);
+}
+
+.logo span{
+	font-size: 30px;
+	top: 160px;
+	left: 80px;
+	position: absolute;
+	color: rgba(46, 148, 109, 1);
+}
+
+section h2{
+	position: absolute;
+	width: 100%;
+	font-size: 55px;
+	text-align: center;
+	font-weight: bold;
+	top: 50%;
+	margin-top: -70px;
+}
+
+section p{
+	position: absolute;
+	width: 50%;
+	font-size: 16px;
+	text-align: center;
+	top: 50%;
+	left: 25%;
+	margin-top: 10px;
+}
+
+/* Animações h2 */
+
+#radio-nav-1:checked ~ .scroll #section-1 h2,
+#radio-nav-2:checked ~ .scroll #section-2 h2,
+#radio-nav-3:checked ~ .scroll #section-3 h2,
+#radio-nav-4:checked ~ .scroll #section-4 h2,
+#radio-nav-5:checked ~ .scroll #section-5 h2{
+	animation: animeDown .7s ease-in-out .4s backwards;
+	-webkit-animation: animeDown .7s ease-in-out .4s backwards;
+}
+
+@keyframes animeDown{
+	0%{
+		transform: translateY(-100px);
+		-webkit-transform: translateY(-100px);
+		opacity: 0;
+	}
+	
+	100%{
+		transform: translateY(0px);
+		-webkit-transform: translateY(0px);
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes animeDown{
+	0%{
+		transform: translateY(-100px);
+		-webkit-transform: translateY(-100px);
+		opacity: 0;
+	}
+	
+	100%{
+		transform: translateY(0px);
+		-webkit-transform: translateY(0px);
+		opacity: 1;
+	}
+}
+
+/* Animações p */
+
+#radio-nav-1:checked ~ .scroll #section-1 p,
+#radio-nav-2:checked ~ .scroll #section-2 p,
+#radio-nav-3:checked ~ .scroll #section-3 p,
+#radio-nav-4:checked ~ .scroll #section-4 p,
+#radio-nav-5:checked ~ .scroll #section-5 p{
+	animation: animeUp .7s ease-in-out .4s backwards;
+	-webkit-animation: animeUp .7s ease-in-out .4s backwards;
+}
+
+@keyframes animeUp{
+	0%{
+		transform: translateY(100px);
+		-webkit-transform: translateY(100px);
+		opacity: 0;
+	}
+	
+	100%{
+		transform: translateY(0px);
+		-webkit-transform: translateY(0px);
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes animeUp{
+	0%{
+		transform: translateY(-100px);
+		-webkit-transform: translateY(-100px);
+		opacity: 0;
+	}
+	
+	100%{
+		transform: translateY(0px);
+		-webkit-transform: translateY(0px);
+		opacity: 1;
+	}
+}
